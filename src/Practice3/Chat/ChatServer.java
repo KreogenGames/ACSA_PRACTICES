@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ChatServer {
     public static void main(String[] args) throws Exception {
@@ -32,7 +33,8 @@ public class ChatServer {
                 var in = new Scanner(socket.getInputStream());
                 var out = new PrintWriter(socket.getOutputStream(), true);
                 while (in.hasNextLine()) {
-                    out.println(in);
+                    TimeUnit.SECONDS.sleep(5);
+                    out.println(in.nextLine());
                 }
             } catch (Exception e) {
                 System.out.println("Ошибка:" + socket);
